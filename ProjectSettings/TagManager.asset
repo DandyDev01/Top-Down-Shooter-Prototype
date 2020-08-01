@@ -1,0 +1,66 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 2
+  tags:
+  - Enemy
+  - Bullet
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - 
+  - Water
+  - UI
+  - 
+  - 
+  - Player
+  - Bullet
+  - Enemy
+  - Obsticle
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  m_SortingLayers:
+  - name: Default
+    uniqueID: 0
+    locked: 0
+  - name: Ground
+    uniqueID: 2333584239
+    locked: 0
+  - name: GroundOverLay
+    uniqueID: 3240824435
+    locked: 0
+  - name: Pickups
+    uniqueID: 2732675355
+    locked: 0
+  - name: Enemies
+    uniqueID: 2367989945
+    locked: 0
+  - name: Obstical
+    uniqueID: 505730751
+    locked: 0
+  - name: Player
+    uniqueID: 507224693
+    locked: 0
+  - name: UI
+    uniqueID: 1733593665
+    locked: 0
