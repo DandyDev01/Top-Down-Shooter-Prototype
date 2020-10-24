@@ -21,12 +21,11 @@ public class UIController : MonoBehaviour
 	#region Variables
 	[SerializeField] TextMeshProUGUI ammoText = null;
     [SerializeField] TextMeshProUGUI coinText = null;
+    [SerializeField] TextMeshProUGUI waveText = null;
     [SerializeField] TextMeshProUGUI waveOverUI = null;
     [SerializeField] GameObject gameOverUI = null;
-    [SerializeField] GameObject shopUI = null;
     [SerializeField] GameObject weaponSelectUI = null;
-    [SerializeField] Button gunButtons;
-    [SerializeField] Button bulletButtons;
+    private bool pause;
 	#endregion
 
 	// Start is called before the first frame update
@@ -34,7 +33,6 @@ public class UIController : MonoBehaviour
     {
         waveOverUI.color = new Color(0, 0, 0, 0);
         gameOverUI.SetActive(false);
-        shopUI.SetActive(false);
         weaponSelectUI.SetActive(true);
 
         ammoText.text = Player.ammo.ToString();
@@ -43,17 +41,29 @@ public class UIController : MonoBehaviour
         Interactable.OnInteractEvent += UpdateAmmoTxt;
         Interactable.OnInteractEvent += UpdateCoinTxt;
         Wave.instance.WaveOverEvent += WaveOverUI;
+        Wave.instance.WaveOverEvent += UpdateCoinTxt;
+        Wave.instance.WaveOverEvent += UpdateWaveTextUI;
         Player.instance.OnDeathEvent += GameOverUI;
         Gun.OnShootEvent += UpdateAmmoTxt;
     }
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Escape) && !pause)
         {
             Time.timeScale = 0;
+            pause = true;
             WeaponSelectUI();
+        } 
+        else if(Input.GetKeyDown(KeyCode.Escape) && pause)
+        {
+            CloseAll();
         }
+    }
+
+    public void UpdateWaveTextUI()
+    {
+        waveText.text = Wave.WaveNum.ToString();
     }
 
     public void UpdateAmmoTxt()
@@ -93,29 +103,26 @@ public class UIController : MonoBehaviour
     public void ShopUI()
     {
         gameOverUI.SetActive(false);
-        shopUI.SetActive(true);
         weaponSelectUI.SetActive(false);
     }
 
     public void WeaponSelectUI()
     {
         gameOverUI.SetActive(false);
-        shopUI.SetActive(false);
         weaponSelectUI.SetActive(true);
     }
 
     public void Back()
     {
         gameOverUI.SetActive(true);
-        shopUI.SetActive(false);
         weaponSelectUI.SetActive(false);
     }
 
     public void CloseAll()
     {
         gameOverUI.SetActive(false);
-        shopUI.SetActive(false);
         weaponSelectUI.SetActive(false);
         Time.timeScale = 1;
+        pause = false;
     }
 }

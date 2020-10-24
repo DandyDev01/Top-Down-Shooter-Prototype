@@ -24,7 +24,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6995275869220340197}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.004, y: 0.23, z: 0}
+  m_LocalPosition: {x: 0.003, y: 0.463, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 7625105609399453902}
@@ -79,7 +79,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -164,7 +164,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -206,7 +206,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 8ff3909a37d43b14085b41efd9e770de, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 711528dbaefb0dc45972671bf6ffb01b, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 0.2
   m_Pitch: 1
@@ -305,10 +305,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   flash: {fileID: 6995275869390343704}
+  lightFlash: {fileID: 8438620088823035997, guid: f28809013d85c1a418a1f5b3ae258d60,
+    type: 3}
   bulletPrefab: {fileID: 5272947677271645300, guid: 9912c67fe744d544d9c8d79b393f92e2,
     type: 3}
   shootPoint: {fileID: 6995275869220340202}
   bulletForce: 20
-  fireRate: 0.5
+  fireRate: 1
   numOfProjectile: 3
   spreadAngleDeg: 45

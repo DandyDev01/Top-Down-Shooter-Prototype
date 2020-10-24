@@ -8,9 +8,11 @@ public class Health : MonoBehaviour
 {
     #region Variables
     [SerializeField] Slider healthBar;                 // the halth bar that displays the health to the user
-    [SerializeField] float maxHealth = 5;              // max health the object can have
+    [SerializeField] protected float maxHealth = 5;    // max health the object can have
     [SerializeField] 
     protected GameObject deathEffect;                  // effect that is called to happen when Die() is called
+    [SerializeField]
+    protected ParticleSystem damageEffect;
     [SerializeField] bool destroyOnDeath = true;       // weather or not the object should be destroyed on death
     [SerializeField] bool destroyDeathEffect = false;  // weather or not the effect should be destroyed
     [SerializeField] 
@@ -21,9 +23,11 @@ public class Health : MonoBehaviour
     [SerializeField] float swapTime = .1f;
     private Material defaultMaterial;
     private Color defaultColor;
-    private float currHealth;                          // keeps track of the object health
+    protected float currHealth;                          // keeps track of the object health
     protected AudioSource audioSource;                 // plays the sounds
     private SpriteRenderer sp;
+    protected Collider2D collider;
+    private static bool isTimePause;
     #endregion
 
     #region Delegates & Events
@@ -46,6 +50,7 @@ public class Health : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
         currHealth = maxHealth;
         healthBar.value = healthBar.maxValue;
+        collider = GetComponent<Collider2D>();
     }
     #endregion
 
@@ -53,9 +58,20 @@ public class Health : MonoBehaviour
     // make the currHealth go down
     public void TakeDamage(float amount)
     {
+        // pause the game for a second when enemy hit
+        if (gameObject.tag == "Enemy")
+                StartCoroutine(PauseTime());
+
+        if (gameObject.tag == "Player")
+            CameraShake.instance.StartShake(0.2f, 0.5f);
+       
         currHealth -= amount;
 
         audioSource.Play();
+
+        // blood splatter
+        if(damageEffect != null)
+            damageEffect.Play();
 
         StartCoroutine(MaterialSwap());
 
@@ -88,8 +104,23 @@ public class Health : MonoBehaviour
         healthBar.value = percent * healthBar.maxValue;
     }
 
-    private IEnumerator MaterialSwap()
+    // pause the time for a fraction of a second 
+    private static IEnumerator PauseTime()
     {
+        if (!isTimePause)
+        {
+            isTimePause = true;
+            Time.timeScale = 0;
+            yield return new WaitForSecondsRealtime(0.05f);
+            Time.timeScale = 1;
+            yield return new WaitForSeconds(3f);
+        }
+        isTimePause = false;
+    }
+
+    protected IEnumerator MaterialSwap()
+    {
+        collider.enabled = false;
         for(int i = 0; i < 2; i++)
         {
             sp.color = Color.white;
@@ -99,6 +130,8 @@ public class Health : MonoBehaviour
             sp.material = defaultMaterial;
             yield return new WaitForSeconds(swapTime);
         }
+        collider.enabled = true;
+        audioSource.Stop();
     }
 
     // the object has no health left kill them

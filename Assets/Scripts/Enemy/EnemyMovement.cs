@@ -8,7 +8,7 @@ public class EnemyMovement : MonoBehaviour
 	[SerializeField] protected float speed;   // how fast the enemy will move
     float angle;                              // angle to look at 
     Vector3 lookDir;                          // direction the enemy will look to see the Player
-    protected Transform player;               // the players transfrom     
+    protected Transform player;               // the players transfrom   
     Rigidbody2D rb;                 
 	#endregion
 
@@ -44,7 +44,7 @@ public class EnemyMovement : MonoBehaviour
     // move enemy towards the player
     protected virtual void Movement()
     {
-       if(player != null)
+        if (player != null)
         {
             transform.position = Vector2.MoveTowards(transform.position, player.position,
                    speed * Time.deltaTime);

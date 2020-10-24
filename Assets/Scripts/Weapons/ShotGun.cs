@@ -28,6 +28,8 @@ public class ShotGun : ProjectileSpread
     {
         if (Player.ammo > 0)
         {
+            CameraShake.instance.StartShake(0.2f, 0.1f);
+            Instantiate(lightFlash, shootPoint.position, Quaternion.identity);
             InvokeEvent();
             Player.ammo--;
             Scatter(shootPoint);

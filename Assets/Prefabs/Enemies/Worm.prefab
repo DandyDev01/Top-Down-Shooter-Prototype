@@ -144,7 +144,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 920967262217657054}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.67, y: -3.41, z: 0}
+  m_LocalPosition: {x: 0, y: -3.4, z: 0}
   m_LocalScale: {x: 1.5, y: 1.5, z: 1}
   m_Children:
   - {fileID: 1685451245468819914}
@@ -267,6 +267,7 @@ MonoBehaviour:
   maxHealth: 10
   deathEffect: {fileID: 2057190820358923637, guid: 1842574aaa90c4d479c78852617ce128,
     type: 3}
+  damageEffect: {fileID: 0}
   destroyOnDeath: 1
   destroyDeathEffect: 1
   timeToDestroyDeathEffect: 1
@@ -285,7 +286,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 824d2de8edb460d4a8930e397e573226, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 5
+  damage: 7
   damageLayer:
     serializedVersion: 2
     m_Bits: 256
@@ -319,7 +320,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b16d69a76980fd548b7f09cdbead7a14, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 2.5
+  speed: 5
   dust: {fileID: 4407947332566051705}
   timeUnderGround: 3
   underSpeedMultiplier: 2.3
@@ -336,12 +337,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   flash: {fileID: 1305054956}
+  lightFlash: {fileID: 0}
   bulletPrefab: {fileID: 1340966675506305177, guid: c962ed90c8828a140b16ef3bdf4b3c72,
     type: 3}
   shootPoint: {fileID: 1762869674}
   bulletForce: 20
   fireRate: 1.5
-  range: 7
+  range: 12
 --- !u!82 &7301266467778269781
 AudioSource:
   m_ObjectHideFlags: 0

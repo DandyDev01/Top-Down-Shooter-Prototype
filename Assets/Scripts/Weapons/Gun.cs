@@ -7,6 +7,7 @@ public class Gun : MonoBehaviour
 
     #region Variables
     [SerializeField] protected GameObject flash;          // flash that shows when gun is shot
+    [SerializeField] protected GameObject lightFlash;
     [SerializeField] protected GameObject bulletPrefab;   // the bullet the hit enemies
     [SerializeField] protected Transform shootPoint;      // where the bullet is shot from
     [SerializeField] protected float bulletForce;         // amount of force that is applied to the bullet
@@ -59,6 +60,11 @@ public class Gun : MonoBehaviour
     {
         if(Player.ammo > 0)
         {
+            if (lightFlash != null)
+                Instantiate(lightFlash, shootPoint.position, Quaternion.identity);
+
+            // CameraShake.instance.ShakeCamera(80, 0.01f);
+            CameraShake.instance.StartShake(0.05f, 0.1f);   
             Player.ammo--;
             audioSource.Play();
             OnShootEvent.Invoke();
